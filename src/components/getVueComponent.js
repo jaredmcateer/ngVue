@@ -1,9 +1,13 @@
 import angular from 'angular'
-import { isCompositionApi } from '../../lib/isCompositionApi';
+import Vue from 'vue'
+import { isCompositionApi } from '../../lib/isCompositionApi'
 
-export default function getVueComponent(name, $injector) {
-  if (angular.isFunction(name) || isCompositionApi(name)) {
-    return name
+export default function getVueComponent(component, $injector) {
+  if (angular.isFunction(component)) {
+    return component
+  } else if (isCompositionApi(component)) {
+    const n = component.name || 'UnnamedComponent'
+    return Vue.component(n, component)
   }
-  return $injector.get(name)
+  return $injector.get(component)
 }
