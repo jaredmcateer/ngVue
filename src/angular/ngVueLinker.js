@@ -74,7 +74,7 @@ export function ngVueLinker(componentName, jqElement, elAttributes, scope, $inje
   let vueInstance
   if (isCompositionApi(Component)) {
     vueInstance = createApp({
-      name: 'NgVue',
+      name: `NgVue-CompositionApi-${Component.name}`,
       data() {
         return reactiveData
       },
@@ -85,7 +85,7 @@ export function ngVueLinker(componentName, jqElement, elAttributes, scope, $inje
     vueInstance.mount(jqElement[0])
   } else {
     vueInstance = new Vue({
-      name: 'NgVue',
+      name: `NgVue-OptionsApi-${Component.name}`,
       el: jqElement[0],
       data: reactiveData,
       render,
