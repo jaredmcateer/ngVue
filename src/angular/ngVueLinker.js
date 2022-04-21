@@ -60,7 +60,7 @@ export function ngVueLinker(componentName, jqElement, elAttributes, scope, $inje
   watchSpecialAttributes(reactiveData, jqElement, scope)
 
   let vueInstance = new Vue({
-    name: `NgVue-${Component.name}`,
+    name: `NgVue-${Component.options.name}`,
     el: jqElement[0],
     data: reactiveData,
     render(h) {
